@@ -18,15 +18,13 @@
     --gold-deep: #8a6d1f;
     --cream: #f5e9c8;
     --white-soft: #faf6ee;
+    --pink: #ffb6c1;
+    --pink-deep: #e89aa8;
     --line: rgba(212, 175, 55, 0.2);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html, body {
-    height: 100%;
-    overflow: hidden;
-  }
+  html, body { height: 100%; overflow: hidden; }
 
   body {
     font-family: 'Heebo', sans-serif;
@@ -37,7 +35,6 @@
     position: relative;
   }
 
-  /* Luxury background — deep gradient + subtle texture */
   body::before {
     content: '';
     position: fixed;
@@ -59,28 +56,13 @@
     z-index: -1;
   }
 
-  .display {
-    font-family: 'Bellefair', serif;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    line-height: 1.1;
-  }
+  .display { font-family: 'Bellefair', serif; font-weight: 400; letter-spacing: 0.01em; line-height: 1.1; }
 
-  /* Floating sparkles */
-  .sparkles {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
+  .sparkles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
   .sparkle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: var(--gold);
-    border-radius: 50%;
-    opacity: 0;
-    box-shadow: 0 0 6px var(--gold);
+    position: absolute; width: 3px; height: 3px;
+    background: var(--gold); border-radius: 50%;
+    opacity: 0; box-shadow: 0 0 6px var(--gold);
     animation: twinkle 4s infinite;
   }
   @keyframes twinkle {
@@ -88,190 +70,238 @@
     50% { opacity: 1; transform: scale(1.5); }
   }
 
-  /* ─── Container ─── */
   .stage {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    z-index: 2;
+    position: relative; height: 100vh; width: 100vw;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; z-index: 2;
   }
 
   .step {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 24px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; padding: 24px;
+    opacity: 0; visibility: hidden; transform: translateY(20px);
     transition: opacity 0.7s ease, transform 0.7s ease, visibility 0s 0.7s;
     text-align: center;
   }
   .step.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    opacity: 1; visibility: visible; transform: translateY(0);
     transition: opacity 0.9s 0.2s ease, transform 0.9s 0.2s ease;
   }
 
-  /* Decorative ornaments */
   .ornament {
-    width: 80px;
-    height: 1px;
+    width: 80px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 32px;
-    position: relative;
+    margin: 0 auto 32px; position: relative;
   }
   .ornament::before {
-    content: '◆';
-    position: absolute;
-    top: -10px;
-    right: 50%;
-    transform: translateX(50%);
-    color: var(--gold);
-    font-size: 12px;
-    background: var(--black);
-    padding: 0 8px;
+    content: '◆'; position: absolute; top: -10px; right: 50%;
+    transform: translateX(50%); color: var(--gold); font-size: 12px;
+    background: var(--black); padding: 0 8px;
   }
 
-  /* Crown SVG style */
   .crown {
-    color: var(--gold);
-    margin-bottom: 24px;
+    color: var(--gold); margin-bottom: 24px;
     filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.4));
   }
 
   .eyebrow {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.4em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    opacity: 0.85;
+    font-size: 12px; font-weight: 400; letter-spacing: 0.4em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 24px; opacity: 0.85;
   }
 
   h1.intro-title {
-    font-size: clamp(56px, 11vw, 140px);
-    margin-bottom: 16px;
+    font-size: clamp(56px, 11vw, 140px); margin-bottom: 16px;
     background: linear-gradient(180deg, var(--cream) 0%, var(--gold) 50%, var(--gold-deep) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
   }
 
   h2.question {
-    font-size: clamp(32px, 5vw, 56px);
-    color: var(--white-soft);
-    max-width: 700px;
-    margin-bottom: 48px;
-    font-weight: 400;
+    font-size: clamp(32px, 5vw, 56px); color: var(--white-soft);
+    max-width: 700px; margin-bottom: 32px; font-weight: 400;
   }
   h2.question em {
     font-style: italic;
     background: linear-gradient(180deg, var(--gold-bright), var(--gold));
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .subtitle {
-    font-size: 16px;
-    color: rgba(245, 233, 200, 0.6);
-    max-width: 480px;
-    margin-bottom: 56px;
-    line-height: 1.7;
+    font-size: 16px; color: rgba(245, 233, 200, 0.6);
+    max-width: 480px; margin-bottom: 56px; line-height: 1.7;
   }
 
-  /* ─── INPUT ─── */
-  .input-wrap {
-    width: 100%;
-    max-width: 520px;
-    margin-bottom: 40px;
-  }
+  .input-wrap { width: 100%; max-width: 520px; margin-bottom: 40px; }
 
-  .lux-input,
-  .lux-textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--line);
-    padding: 20px 4px;
-    font-family: 'Bellefair', serif;
-    font-size: 28px;
-    color: var(--cream);
-    text-align: center;
-    outline: none;
+  .lux-input {
+    width: 100%; background: transparent; border: none;
+    border-bottom: 1px solid var(--line); padding: 20px 4px;
+    font-family: 'Bellefair', serif; font-size: 28px;
+    color: var(--cream); text-align: center; outline: none;
     transition: border-color 0.4s, box-shadow 0.4s;
   }
-  .lux-input:focus,
-  .lux-textarea:focus {
+  .lux-input:focus {
     border-bottom-color: var(--gold);
     box-shadow: 0 1px 0 var(--gold);
   }
-  .lux-input::placeholder,
-  .lux-textarea::placeholder {
-    color: rgba(245, 233, 200, 0.25);
-    font-style: italic;
-  }
-  .lux-textarea {
-    resize: none;
-    min-height: 80px;
-    font-family: 'Heebo', sans-serif;
-    font-size: 20px;
-    line-height: 1.5;
+  .lux-input::placeholder {
+    color: rgba(245, 233, 200, 0.25); font-style: italic;
   }
 
-  /* ─── SLIDER ─── */
-  .slider-wrap {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 40px;
+  /* ─── ✨ DECREE / GIFT CARD ✨ ─── */
+  .decree-card {
+    max-width: 480px; width: 100%;
+    border: 1px solid rgba(255, 182, 193, 0.3);
+    padding: 40px 32px;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.06), rgba(212, 175, 55, 0.04));
+    position: relative;
+    margin-bottom: 32px;
+    box-shadow: 0 0 60px rgba(255, 182, 193, 0.08);
   }
+  .decree-card::before, .decree-card::after {
+    content: ''; position: absolute;
+    width: 24px; height: 24px;
+    border: 1px solid var(--pink);
+  }
+  .decree-card::before {
+    top: -1px; right: -1px;
+    border-bottom: none; border-left: none;
+  }
+  .decree-card::after {
+    bottom: -1px; left: -1px;
+    border-top: none; border-right: none;
+  }
+
+  .iphone-icon {
+    width: 80px; height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ffd1dc, #ffb6c1, #e89aa8);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px rgba(255, 182, 193, 0.4);
+    position: relative;
+  }
+  .iphone-icon::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+  }
+  .iphone-icon-inner {
+    font-size: 32px;
+    z-index: 2;
+  }
+
+  .decree-label {
+    font-size: 11px;
+    color: var(--pink);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .decree-name {
+    font-family: 'Bellefair', serif;
+    font-size: 32px;
+    color: var(--white-soft);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .decree-color {
+    font-size: 14px;
+    color: rgba(245, 233, 200, 0.6);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .decree-line {
+    width: 60px; height: 1px;
+    background: var(--pink);
+    margin: 0 auto 20px;
+    opacity: 0.4;
+  }
+
+  .decree-note {
+    font-size: 13px;
+    color: rgba(245, 233, 200, 0.5);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Pink action button */
+  .btn-pink {
+    padding: 18px 48px;
+    background: transparent;
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    border-radius: 0;
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s, box-shadow 0.4s;
+    display: inline-block;
+  }
+  .btn-pink::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--pink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+  .btn-pink:hover {
+    color: var(--black);
+    box-shadow: 0 0 24px rgba(255, 182, 193, 0.4);
+  }
+  .btn-pink:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .lock-hint {
+    margin-top: 20px;
+    font-size: 11px;
+    color: rgba(245, 233, 200, 0.35);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .slider-wrap { width: 100%; max-width: 600px; margin-bottom: 40px; }
   .slider-value {
     font-family: 'Bellefair', serif;
     font-size: clamp(80px, 14vw, 160px);
     background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1;
-    margin-bottom: 8px;
-    transition: transform 0.3s;
+    line-height: 1; margin-bottom: 8px; transition: transform 0.3s;
   }
   .slider-unit {
-    font-size: 14px;
-    color: rgba(245, 233, 200, 0.5);
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
+    font-size: 14px; color: rgba(245, 233, 200, 0.5);
+    letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 32px;
   }
 
   input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 2px;
-    background: var(--line);
-    outline: none;
-    direction: ltr;
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 2px; background: var(--line);
+    outline: none; direction: ltr;
   }
   input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 24px;
-    height: 24px;
-    background: var(--gold);
-    border-radius: 50%;
-    cursor: pointer;
+    -webkit-appearance: none; appearance: none;
+    width: 24px; height: 24px; background: var(--gold);
+    border-radius: 50%; cursor: pointer;
     box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15), 0 0 12px var(--gold);
     transition: all 0.3s;
   }
@@ -280,159 +310,95 @@
     box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.2), 0 0 16px var(--gold);
   }
   input[type="range"]::-moz-range-thumb {
-    width: 24px;
-    height: 24px;
-    background: var(--gold);
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
+    width: 24px; height: 24px; background: var(--gold);
+    border-radius: 50%; border: none; cursor: pointer;
     box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15), 0 0 12px var(--gold);
   }
 
-  /* ─── BUTTONS ─── */
   .btn-gold {
-    padding: 18px 56px;
-    background: transparent;
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    border-radius: 0;
-    font-family: 'Heebo', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    cursor: pointer;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-    transition: color 0.4s;
+    padding: 18px 56px; background: transparent;
+    color: var(--gold); border: 1px solid var(--gold);
+    border-radius: 0; font-family: 'Heebo', sans-serif;
+    font-size: 13px; font-weight: 400; letter-spacing: 0.3em;
+    cursor: pointer; text-transform: uppercase;
+    position: relative; overflow: hidden; transition: color 0.4s;
   }
   .btn-gold::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--gold);
-    transform: scaleX(0);
+    content: ''; position: absolute; inset: 0;
+    background: var(--gold); transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.4s ease;
-    z-index: -1;
+    transition: transform 0.4s ease; z-index: -1;
   }
-  .btn-gold:hover {
-    color: var(--black);
-  }
-  .btn-gold:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-  .btn-gold:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-  .btn-gold:disabled:hover { color: var(--gold); }
-  .btn-gold:disabled:hover::before { transform: scaleX(0); }
+  .btn-gold:hover { color: var(--black); }
+  .btn-gold:hover::before { transform: scaleX(1); transform-origin: left; }
 
-  /* ─── PROGRESS ─── */
   .progress {
-    position: fixed;
-    top: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10;
+    position: fixed; top: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 10;
   }
   .dot {
-    width: 28px;
-    height: 1px;
-    background: rgba(212, 175, 55, 0.2);
-    transition: background 0.4s;
+    width: 28px; height: 1px;
+    background: rgba(212, 175, 55, 0.2); transition: background 0.4s;
   }
   .dot.active { background: var(--gold); }
   .dot.done { background: rgba(212, 175, 55, 0.5); }
 
-  /* ─── FINAL SCREEN ─── */
   .final-card {
-    max-width: 600px;
-    width: 100%;
-    border: 1px solid var(--line);
-    padding: 60px 48px;
+    max-width: 600px; width: 100%;
+    border: 1px solid var(--line); padding: 60px 48px;
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.04), transparent);
     position: relative;
   }
-  .final-card::before,
-  .final-card::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 24px;
+  .final-card::before, .final-card::after {
+    content: ''; position: absolute;
+    width: 24px; height: 24px;
     border: 1px solid var(--gold);
   }
-  .final-card::before {
-    top: -1px;
-    right: -1px;
-    border-bottom: none;
-    border-left: none;
-  }
-  .final-card::after {
-    bottom: -1px;
-    left: -1px;
-    border-top: none;
-    border-right: none;
-  }
+  .final-card::before { top: -1px; right: -1px; border-bottom: none; border-left: none; }
+  .final-card::after { bottom: -1px; left: -1px; border-top: none; border-right: none; }
   .final-row {
-    margin-bottom: 24px;
-    padding-bottom: 24px;
+    margin-bottom: 24px; padding-bottom: 24px;
     border-bottom: 1px solid var(--line);
   }
   .final-row:last-of-type { border-bottom: none; }
   .final-label {
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    text-transform: uppercase;
+    font-size: 11px; letter-spacing: 0.3em;
+    color: var(--gold); text-transform: uppercase;
     margin-bottom: 8px;
   }
   .final-value {
-    font-family: 'Bellefair', serif;
-    font-size: 26px;
-    color: var(--white-soft);
-    line-height: 1.3;
-    word-wrap: break-word;
+    font-family: 'Bellefair', serif; font-size: 26px;
+    color: var(--white-soft); line-height: 1.3; word-wrap: break-word;
+  }
+  .final-value.pink-gift {
+    color: var(--pink);
   }
   .seal {
-    margin-top: 32px;
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    font-style: italic;
+    margin-top: 32px; font-size: 13px; letter-spacing: 0.2em;
+    color: var(--gold); font-style: italic;
   }
   .signature {
-    font-family: 'Bellefair', serif;
-    font-style: italic;
-    font-size: 36px;
-    color: var(--gold-bright);
-    margin-top: 12px;
+    font-family: 'Bellefair', serif; font-style: italic;
+    font-size: 36px; color: var(--gold-bright); margin-top: 12px;
   }
 
-  /* ─── HINT TEXT ─── */
   .enter-hint {
-    margin-top: 32px;
-    font-size: 12px;
+    margin-top: 32px; font-size: 12px;
     color: rgba(245, 233, 200, 0.35);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    letter-spacing: 0.15em; text-transform: uppercase;
   }
   .enter-hint span { color: var(--gold); }
 
   @media (max-width: 600px) {
     .progress { top: 20px; }
-    .lux-input, .lux-textarea { font-size: 22px; }
+    .lux-input { font-size: 22px; }
     .final-card { padding: 40px 24px; }
+    .decree-card { padding: 32px 20px; }
+    .decree-name { font-size: 26px; }
   }
 
-  /* Final reveal animation */
   .reveal-row {
-    opacity: 0;
-    transform: translateY(16px);
+    opacity: 0; transform: translateY(16px);
     animation: revealUp 0.6s forwards;
   }
   .reveal-row:nth-child(1) { animation-delay: 0.4s; }
@@ -479,18 +445,18 @@
     <div class="input-wrap">
       <input type="text" class="lux-input" id="userName" placeholder="הקלד את שמך כאן" autocomplete="off" />
     </div>
-    <button class="btn-gold" onclick="next()" id="btn1">המשך</button>
+    <button class="btn-gold" onclick="next()">המשך</button>
     <p class="enter-hint">הקש <span>Enter</span> להמשך</p>
   </div>
 
   <!-- STEP 2: WHO IS THE QUEEN -->
   <div class="step" data-step="2">
     <div class="eyebrow">שאלה שנייה</div>
-    <h2 class="display question">ומי, אם תרשה,<br />היא <em>המלכה?</em></h2>
+    <h2 class="display question">ומי,<br />היא <em>המלכה?</em></h2>
     <div class="input-wrap">
       <input type="text" class="lux-input" id="queenName" placeholder="שמה של המלכה" autocomplete="off" />
     </div>
-    <button class="btn-gold" onclick="next()" id="btn2">המשך</button>
+    <button class="btn-gold" onclick="next()">המשך</button>
     <p class="enter-hint">הקש <span>Enter</span> להמשך</p>
   </div>
 
@@ -501,19 +467,36 @@
     <div class="slider-wrap">
       <div class="slider-value" id="loveValue">50</div>
       <div class="slider-unit">מתוך מאה</div>
-      <input type="range" min="0" max="1000" value="50" id="loveSlider" />
+      <input type="range" min="0" max="100" value="50" id="loveSlider" />
     </div>
     <button class="btn-gold" onclick="next()">המשך</button>
   </div>
 
-  <!-- STEP 4: WHAT WILL SHE GET -->
+  <!-- STEP 4: ROYAL DECREE — iPhone gift -->
   <div class="step" data-step="4">
-    <div class="eyebrow">שאלה אחרונה</div>
-    <h2 class="display question">ומה <em>תקבל</em><br />המלכה במתנה?</h2>
-    <div class="input-wrap">
-      <textarea class="lux-textarea" id="gift" placeholder="פרט במילים מדויקות..." rows="3"></textarea>
+    <div class="eyebrow">גזירת המלכה</div>
+    <h2 class="display question">המתנה<br /><em>נבחרה.</em></h2>
+
+    <div class="decree-card">
+      <div class="iphone-icon">
+        <span class="iphone-icon-inner">📱</span>
+      </div>
+      <div class="decree-label">המתנה הרשמית</div>
+      <div class="decree-name">iPhone 15</div>
+      <div class="decree-color">— בגוון ורוד —</div>
+      <div class="decree-line"></div>
+      <p class="decree-note">לאישור הרכישה ולסיום הטופס,<br />יש להמשיך לחנות.</p>
     </div>
-    <button class="btn-gold" onclick="next()" id="btn4">חתום והגש</button>
+
+    <a href="https://www.idigital.co.il/store/idigital_apple/store_iphone/iphone15/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="btn-pink"
+       onclick="completeGift()">
+      לאישור ולרכישה ✦
+    </a>
+
+    <p class="lock-hint">⚿ הטופס יסתיים רק לאחר אישור</p>
   </div>
 
   <!-- STEP 5: FINAL -->
@@ -539,7 +522,7 @@
       </div>
       <div class="final-row reveal-row">
         <div class="final-label">המתנה</div>
-        <div class="final-value" id="out-gift">—</div>
+        <div class="final-value pink-gift">iPhone 15 · ורוד 💖</div>
       </div>
       <div class="reveal-row" style="text-align:center;">
         <div class="seal">— נחתם והוגש —</div>
@@ -553,12 +536,10 @@
 </div>
 
 <script>
-  // ─── State ───
   let currentStep = 0;
   const totalSteps = 6;
-  const data = { name: '', queen: '', love: 50, gift: '' };
+  const data = { name: '', queen: '', love: 50 };
 
-  // ─── Sparkles ───
   const sparkleContainer = document.getElementById('sparkles');
   for (let i = 0; i < 30; i++) {
     const s = document.createElement('div');
@@ -570,7 +551,6 @@
     sparkleContainer.appendChild(s);
   }
 
-  // ─── Slider ───
   const slider = document.getElementById('loveSlider');
   const loveValue = document.getElementById('loveValue');
   slider.addEventListener('input', (e) => {
@@ -578,34 +558,26 @@
     data.love = parseInt(e.target.value);
   });
 
-  // ─── Step navigation ───
   function showStep(n) {
     document.querySelectorAll('.step').forEach((el) => el.classList.remove('active'));
     const target = document.querySelector(`[data-step="${n}"]`);
     if (target) target.classList.add('active');
 
-    // Update progress dots (only steps 1-4 count, intro is hidden, final shows all done)
     const dots = document.querySelectorAll('.dot');
     dots.forEach((dot, i) => {
       dot.classList.remove('active', 'done');
-      if (n === 5) {
-        dot.classList.add('done');
-      } else if (i < n) {
-        dot.classList.add('done');
-      } else if (i === n) {
-        dot.classList.add('active');
-      }
+      if (n === 5) { dot.classList.add('done'); }
+      else if (i < n) { dot.classList.add('done'); }
+      else if (i === n) { dot.classList.add('active'); }
     });
 
-    // Auto-focus inputs
     setTimeout(() => {
-      const input = target?.querySelector('input[type="text"], textarea');
+      const input = target?.querySelector('input[type="text"]');
       if (input) input.focus();
     }, 800);
   }
 
   function next() {
-    // Validate per step
     if (currentStep === 1) {
       const v = document.getElementById('userName').value.trim();
       if (!v) { shake('userName'); return; }
@@ -616,15 +588,19 @@
       if (!v) { shake('queenName'); return; }
       data.queen = v;
     }
-    if (currentStep === 4) {
-      const v = document.getElementById('gift').value.trim();
-      if (!v) { shake('gift'); return; }
-      data.gift = v;
-      renderFinal();
-    }
     currentStep++;
     if (currentStep >= totalSteps) currentStep = totalSteps - 1;
     showStep(currentStep);
+  }
+
+  // ✨ Triggered when user clicks the iPhone link — opens link AND advances ✨
+  function completeGift() {
+    renderFinal();
+    // Slight delay so the link opens cleanly before transition starts
+    setTimeout(() => {
+      currentStep = 5;
+      showStep(5);
+    }, 600);
   }
 
   function shake(id) {
@@ -636,7 +612,6 @@
     }, 10);
   }
 
-  // Add shake animation
   const styleSheet = document.createElement('style');
   styleSheet.textContent = `
     @keyframes shake {
@@ -651,27 +626,21 @@
     document.getElementById('out-name').textContent = data.name;
     document.getElementById('out-queen').textContent = data.queen;
     document.getElementById('out-love').textContent = data.love + ' / 100';
-    document.getElementById('out-gift').textContent = data.gift;
-    // Signature: first letter of name in elegant style
-    document.getElementById('out-signature').textContent = data.name.charAt(0) + '.';
+    document.getElementById('out-signature').textContent = (data.name.charAt(0) || '×') + '.';
   }
 
   function restart() {
     currentStep = 0;
-    data.name = ''; data.queen = ''; data.love = 50; data.gift = '';
+    data.name = ''; data.queen = ''; data.love = 50;
     document.getElementById('userName').value = '';
     document.getElementById('queenName').value = '';
-    document.getElementById('gift').value = '';
     document.getElementById('loveSlider').value = 50;
     document.getElementById('loveValue').textContent = 50;
     showStep(0);
   }
 
-  // Enter key navigation
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && currentStep > 0 && currentStep < 5) {
-      // Allow shift+enter in textarea for newlines
-      if (e.target.tagName === 'TEXTAREA' && e.shiftKey) return;
+    if (e.key === 'Enter' && currentStep > 0 && currentStep < 4) {
       e.preventDefault();
       next();
     }
