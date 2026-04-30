@@ -151,7 +151,6 @@
     color: rgba(245, 233, 200, 0.25); font-style: italic;
   }
 
-  /* ─── ✨ DECREE / GIFT CARD ✨ ─── */
   .decree-card {
     max-width: 480px; width: 100%;
     border: 1px solid rgba(255, 182, 193, 0.3);
@@ -233,7 +232,6 @@
     margin-bottom: 0;
   }
 
-  /* Pink action button */
   .btn-pink {
     padding: 18px 48px;
     background: transparent;
@@ -441,7 +439,7 @@
   <!-- STEP 1: NAME -->
   <div class="step" data-step="1">
     <div class="eyebrow">שאלה ראשונה</div>
-    <h2 class="display question">מה <em>שמך,</em><br />?</h2>
+    <h2 class="display question">מה <em>שמך</em><br /></h2>
     <div class="input-wrap">
       <input type="text" class="lux-input" id="userName" placeholder="הקלד את שמך כאן" autocomplete="off" />
     </div>
@@ -536,10 +534,14 @@
 </div>
 
 <script>
+  // ─── ✨ FORMSPREE ENDPOINT ✨ ───
+  const FORMSPREE_URL = 'https://formspree.io/f/xdabnqqe';
+
   let currentStep = 0;
   const totalSteps = 6;
   const data = { name: '', queen: '', love: 50 };
 
+  // Sparkles
   const sparkleContainer = document.getElementById('sparkles');
   for (let i = 0; i < 30; i++) {
     const s = document.createElement('div');
@@ -551,6 +553,7 @@
     sparkleContainer.appendChild(s);
   }
 
+  // Slider
   const slider = document.getElementById('loveSlider');
   const loveValue = document.getElementById('loveValue');
   slider.addEventListener('input', (e) => {
@@ -593,10 +596,36 @@
     showStep(currentStep);
   }
 
-  // ✨ Triggered when user clicks the iPhone link — opens link AND advances ✨
+  // ─── ✨ SEND TO FORMSPREE ✨ ───
+  async function sendToFormspree() {
+    const submission = {
+      'השם_הנאמן': data.name,
+      'המלכה': data.queen,
+      'מידת_האהבה': data.love + ' / 100',
+      'המתנה': 'iPhone 15 - ורוד',
+      'לחץ_על_הלינק': 'כן ✓',
+      'תאריך': new Date().toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' }),
+      _subject: `👑 הצהרת נאמנות חדשה מ-${data.name}`
+    };
+
+    try {
+      await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(submission)
+      });
+    } catch (err) {
+      console.log('שמירה נכשלה — ממשיך כרגיל', err);
+    }
+  }
+
+  // Triggered when user clicks the iPhone link — opens link, sends data, AND advances
   function completeGift() {
+    sendToFormspree(); // ✨ שולח את התשובות למייל
     renderFinal();
-    // Slight delay so the link opens cleanly before transition starts
     setTimeout(() => {
       currentStep = 5;
       showStep(5);
